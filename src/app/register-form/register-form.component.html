@@ -10,10 +10,10 @@
             </div>
             <div class="step-fields-container justify-content-center align-content-center">
               <div class="row m-2 mt-5">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="input-group has-validation">
                     <span class="input-group-text"><i class="bi bi-asterisk"></i></span>
-                    <div class="outline-label flex-grow-1 input-text">
+                    <div class="outline-label input-text">
                       <input type="text" class="form-control" placeholder="" formControlName="firstName" [ngClass]="{
                         'is-invalid': (registerForm.get('firstName')?.touched ||
                         registerForm.get('firstName')?.dirty) &&
@@ -23,25 +23,23 @@
                       <label for="nom" class="form-label">Nom</label>
                     </div>
                   </div>
-                  <div style="color: red;"
-                      class="text-center"
+                  <div
+                      class="text-center text-danger"
                     *ngIf="registerForm.get('firstName')?.errors?.['required'] && 
                           registerForm.get('firstName')?.touched">
                     Veuillez entrer votre nom.
                   </div>
-                  <div style="color: red;"
-                      class="text-center"
+                  <div
+                      class="text-center text-danger"
                     *ngIf="registerForm.get('firstName')?.errors?.['pattern'] && 
                           registerForm.get('firstName')?.touched">
                     Votre nom ne doit contenir que des caractère alphabétique.
                   </div>
                 </div>
-              </div>
-              <div class="row m-2 mt-4">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="input-group has-validation">
                     <span class="input-group-text"><i class="bi bi-asterisk"></i></span>
-                    <div class="outline-label flex-grow-1 input-text">
+                    <div class="outline-label input-text">
                       <input type="text" class="form-control is-valid" placeholder="" formControlName="lastName"
                         [ngClass]="{
                     'is-invalid': (registerForm.get('lastName')?.touched ||
@@ -52,16 +50,58 @@
                       <label for="prenom" class="form-label">Prenom</label>
                     </div>
                   </div>
-                  <div style="color: red;"
-                      class="text-center"
+                  <div
+                      class="text-center text-danger"
                     *ngIf="registerForm.get('lastName')?.errors?.['required'] && registerForm.get('lastName')?.touched">
                     Veuillez entrer votre prenom.
                   </div>
-                  <div style="color: red;"
-                      class="text-center"
+                  <div
+                      class="text-center text-danger"
                     *ngIf="registerForm.get('firstName')?.touched && 
                         registerForm.get('lastName')?.errors?.['pattern']">
                     Votre prenom ne doit contenir que des caractère alphabétique.
+                  </div>
+                </div>
+              </div>
+              <div class="row m-2 mt-4">
+                <div class="form-group col-md-6 text-center fw-bolder mt-2">
+                  <label for="sexe" class="form-label">Centre d'intérêt 1</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text"><i class="bi bi-joystick"></i></span>
+                    <select class="form-select is-invalid" formControlName="loisir1" [ngClass]="{
+                      'is-invalid': (registerForm.get('loisir1')?.touched ||
+                                    registerForm.get('loisir1')?.dirty) &&
+                                    registerForm.get('loisir1')?.invalid
+                    }">
+                      <option value selected disabled hidden>Selectionnez votre premier loisir</option>
+                      <option value="M">Loisir 1</option>
+                      <option value="F">Loisir 2</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      <span *ngIf="registerForm.get('loisir1')?.errors?.['required']">
+                        Veuillez sélectionner un centre d'intérêt.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6 text-center fw-bolder mt-2">
+                  <label for="sexe" class="form-label">Centre d'intérêt 2</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text"><i class="bi bi-dice-4"></i></span>
+                    <select class="form-select is-invalid" formControlName="loisir2" [ngClass]="{
+                      'is-invalid': (registerForm.get('loisir2')?.touched ||
+                                    registerForm.get('loisir2')?.dirty) &&
+                                    registerForm.get('loisir2')?.invalid
+                    }">
+                      <option value selected disabled hidden>Selectionnez votre loisir secondaire</option>
+                      <option value="M">Loisir 1</option>
+                      <option value="F">Loisir 2</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      <span *ngIf="registerForm.get('loisir2')?.errors?.['required']">
+                        Veuillez sélectionner un centre d'intérêt secondaire.
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -78,10 +118,10 @@
                       'is-valid': registerForm.get('birthDate')?.valid
                       }">
                     <div class="invalid-feedback">
-                      <span style="color: red;" *ngIf="registerForm.get('birthDate')?.errors?.['required']">
+                      <span *ngIf="registerForm.get('birthDate')?.errors?.['required']">
                         Veuillez entrer votre date de naissance.
                       </span>
-                      <span style="color: red;" *ngIf="registerForm.get('birthDate')?.errors?.['dateOutOfRange']">
+                      <span *ngIf="registerForm.get('birthDate')?.errors?.['dateOutOfRange']">
                         Votre âge doit être compris entre 14 et 89 ans.
                       </span>
                     </div>
@@ -101,7 +141,7 @@
                       <option value="F">Feminin</option>
                     </select>
                     <div class="invalid-feedback">
-                      <span style="color: red;" *ngIf="registerForm.get('gender')?.errors?.['required']">
+                      <span *ngIf="registerForm.get('gender')?.errors?.['required']">
                         Veuillez sélectionner votre sexe.
                       </span>
                     </div>
@@ -122,7 +162,7 @@
                 <div class="form-group col-md-12">
                   <div class="input-group has-validation">
                     <span class="input-group-text" style="color: #ff9100; background-color: #00005a;">&#64;</span>
-                    <div class="outline-label flex-grow-1 input-text">
+                    <div class="outline-label input-text">
                       <input type="text" class="form-control" placeholder="" formControlName="username" [ngClass]="{
                     'is-invalid': (registerForm.get('username')?.touched ||
                                 registerForm.get('username')?.dirty) &&
@@ -132,19 +172,19 @@
                       <label for="pseudo" class="form-label">Pseudo</label>
                     </div>
                   </div>
-                  <div style="color: red;"
-                      class="text-center"
+                  <div
+                      class="text-center text-danger"
                     *ngIf="registerForm.get('username')?.errors?.['required'] &&
                           registerForm.get('username')?.touched">
                     Veuillez entrer votre pseudo.
                   </div>
                 </div>
               </div>
-              <div class="row m-2 mt-3">
+              <div class="row m-2 mt-4">
                 <div class="form-group col-md-12">
                   <div class="input-group has-validation">
                     <span class="input-group-text"><i class="bi bi-envelope-at-fill"></i></span>
-                    <div class="outline-label flex-grow-1 input-text-email">
+                    <div class="outline-label input-text-email">
                       <input type="text" class="form-control" placeholder="" formControlName="email" [ngClass]="{
                     'is-invalid': (registerForm.get('email')?.touched ||
                                 registerForm.get('email')?.dirty) &&
@@ -155,14 +195,14 @@
                     </div>
                     <span id="email-end" class="input-group-email input-group-text">&#64;studor.com</span>
                   </div>
-                  <div style="color: red;"
-                      class="text-center"
+                  <div
+                      class="text-center text-danger"
                     *ngIf="registerForm.get('email')?.errors?.['required'] && 
                           registerForm.get('email')?.touched">
                     Veuillez entrer la base de votre email.
                   </div>
-                  <div style="color: red;"
-                      class="text-center"
+                  <div
+                      class="text-center text-danger"
                     *ngIf="registerForm.get('email')?.errors?.['pattern'] && 
                       registerForm.get('email')?.touched">
                     La base de l'email ne peut contenir d'expression regulière.
@@ -170,11 +210,11 @@
                 </div>
               </div>
               <div formGroupName="passwordGroup">
-                <div class="row m-2 mt-3">
+                <div class="row m-2 mt-4">
                   <div class="form-group col-md-12 d-flex flex-column align-items-center">
                     <div class="input-group has-validation">
                       <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                      <div class="outline-label flex-grow-1 input-password">
+                      <div class="outline-label input-password">
                         <input [type]="showPassword ? 'text' : 'password'" placeholder="" class="form-control"
                           formControlName="password" [ngClass]="{
                         'is-invalid': registerForm.get('passwordGroup')?.errors ||
@@ -195,7 +235,7 @@
                         attr.aria-valuenow="{{passwordStrength}}" aria-valuemin="0" aria-valuemax="100">
                       </div>
                     </div>
-                    <div style="color: red;" *ngIf="registerForm.get('passwordGroup.password')?.touched &&
+                    <div class="text-center text-danger" *ngIf="registerForm.get('passwordGroup.password')?.touched &&
                             registerForm.get('passwordGroup.password')?.invalid">
                       Le mot de passe doit contenir au moins 8 caractères.
                     </div>
@@ -205,7 +245,7 @@
                   <div class="form-group col-md-12">
                     <div class="input-group has-validation">
                       <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                      <div class="outline-label flex-grow-1 input-password">
+                      <div class="outline-label input-password">
                         <input [type]="showPassword ? 'text' : 'password'" placeholder=""
                           class="form-control is-invalid" formControlName="confirmPassword" [ngClass]="{
                     'is-invalid': registerForm.get('passwordGroup')?.errors ||
@@ -220,14 +260,14 @@
                         <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
                       </button>
                     </div>
-                    <div style="color: red;"
-                        class="text-center"
+                    <div
+                        class="text-center text-danger"
                       *ngIf="registerForm.get('passwordGroup.confirmPassword')?.touched &&
                           registerForm.get('passwordGroup.confirmPassword')?.errors?.['required']">
                       Veuillez confirmer de votre mot de passe.
                     </div>
-                    <div style="color: red;"
-                    class="text-center"
+                    <div
+                    class="text-center text-danger"
                   *ngIf="registerForm.get('passwordGroup.confirmPassword')?.touched && 
                         registerForm.get('passwordGroup')?.errors?.['passwordMismatch']">
                       Le mot de passe ne correspond pas.

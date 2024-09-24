@@ -121,13 +121,16 @@ export class RegisterFormComponent {
 
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      firstName: ['', [Validators.required, Validators.pattern("[a-zA-ZÀ-ÖØ-öø-ÿ]+")]],
+      lastName: ['', [Validators.required, Validators.pattern("[a-zA-ZÀ-ÖØ-öø-ÿ]+")]],
+
       birthDate: [
         '',
         [Validators.required, dateRangeValidator('1935-01-01', '2010-12-31')],
       ],
       gender: ['', Validators.required],
+      loisir1: ['', Validators.required],
+      loisir2: ['', Validators.required],
       username: ['', Validators.required],
       email: [
         '',
@@ -177,6 +180,8 @@ export class RegisterFormComponent {
       else {
         this.registerForm.get('firstName')?.markAsTouched();
         this.registerForm.get('lastName')?.markAsTouched();
+        this.registerForm.get('loisir1')?.markAsTouched();
+        this.registerForm.get('loisir2')?.markAsTouched();
         this.registerForm.get('birthDate')?.markAsTouched();
         this.registerForm.get('gender')?.markAsTouched();
       }
@@ -195,6 +200,8 @@ export class RegisterFormComponent {
     if (
       this.registerForm.get('firstName')?.valid &&
       this.registerForm.get('lastName')?.valid &&
+      this.registerForm.get('loisir1')?.valid &&
+      this.registerForm.get('loisir2')?.valid &&
       this.registerForm.get('birthDate')?.valid &&
       this.registerForm.get('gender')?.valid
     ) {
