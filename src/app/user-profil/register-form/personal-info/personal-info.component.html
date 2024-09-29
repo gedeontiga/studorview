@@ -1,0 +1,191 @@
+<div
+  [formGroup]="personalInfoForm"
+  class="register-form-content justify-content-center"
+>
+  <div class="register-header text-center mt-1">
+    <h3 class="fs-3">Étape 1 : Informations personnelles</h3>
+  </div>
+  <div
+    class="step-fields-container justify-content-center align-content-center"
+  >
+    <div class="row p-1 mt-4">
+      <div class="col-md-6 mt-3">
+        <div class="input-group has-validation">
+          <span class="input-group-text rounded-end-0"
+            ><i class="bi bi-asterisk"></i
+          ></span>
+          <div class="outline-label input-text">
+            <input
+              type="text"
+              class="form-control rounded-end-2"
+              placeholder=""
+              formControlName="firstName"
+              [ngClass]="{
+                'is-invalid': isInvalid('firstName'),
+                'is-valid': isValid('firstName')
+              }"
+            />
+            <label for="nom" class="form-label">Nom</label>
+          </div>
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="
+            isFieldTouched('firstName') &&
+            isFieldInvalid('firstName', 'required')
+          "
+        >
+          Veuillez entrer votre nom.
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="isFieldInvalid('firstName', 'pattern')"
+        >
+          Votre nom ne doit contenir que des caractères alphabétiques.
+        </div>
+      </div>
+      <div class="col-md-6 mt-3">
+        <div class="input-group has-validation">
+          <span class="input-group-text rounded-end-0"
+            ><i class="bi bi-asterisk"></i
+          ></span>
+          <div class="outline-label input-text">
+            <input
+              type="text"
+              class="form-control rounded-end-2"
+              placeholder=""
+              formControlName="lastName"
+              [ngClass]="{
+                'is-invalid': isInvalid('lastName'),
+                'is-valid': isValid('lastName')
+              }"
+            />
+            <label for="prenom" class="form-label">Prénom</label>
+          </div>
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="
+            isFieldTouched('lastName') && isFieldInvalid('lastName', 'required')
+          "
+        >
+          Veuillez entrer votre prénom.
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="isFieldInvalid('lastName', 'pattern')"
+        >
+          Votre prénom ne doit contenir que des caractères alphabétiques.
+        </div>
+      </div>
+    </div>
+    <div class="row p-1 mt-2">
+      <div class="form-group col-md-6 text-center mt-2">
+        <label for="sexe" class="form-label">Centre d'intérêt 1</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text"><i class="bi bi-joystick"></i></span>
+          <select
+            class="form-select is-invalid"
+            formControlName="loisir1"
+            [ngClass]="{
+              'is-invalid': isInvalid('loisir1')
+            }"
+          >
+            <option value selected disabled hidden>
+              Selectionnez votre premier loisir
+            </option>
+            <option *ngFor="let hobby of hobbies" value="hobby">
+              {{ hobby }}
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            <span *ngIf="isFieldInvalid('loisir1', 'required')">
+              Veuillez sélectionner un centre d'intérêt.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 text-center mt-2">
+        <label for="sexe" class="form-label">Centre d'intérêt 2</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text"><i class="bi bi-dice-4"></i></span>
+          <select
+            class="form-select is-invalid"
+            formControlName="loisir2"
+            [ngClass]="{
+              'is-invalid': isInvalid('loisir2')
+            }"
+          >
+            <option value selected disabled hidden>
+              Selectionnez votre loisir secondaire
+            </option>
+            <option *ngFor="let hobby of hobbies" [value]="hobby">
+              {{ hobby }}
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            <span *ngIf="isFieldInvalid('loisir2', 'required')">
+              Veuillez sélectionner un centre d'intérêt secondaire.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-2 row p-1 mb-5">
+      <div class="form-group col-md-6 text-center fw-bolder mt-2">
+        <label for="dateDeNaissance" class="form-label"
+          >Date de naissance</label
+        >
+        <div class="input-group has-validation">
+          <span class="input-group-text"
+            ><i class="bi bi-calendar-date-fill"></i
+          ></span>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="birthDate"
+            min="1935-01-01"
+            max="2010-12-31"
+            [ngClass]="{
+              'is-invalid': isInvalid('birthDate')
+            }"
+          />
+          <div class="invalid-feedback">
+            <span *ngIf="isFieldInvalid('birthDate', 'required')">
+              Veuillez entrer votre date de naissance.
+            </span>
+            <span *ngIf="isFieldInvalid('birthDate', 'dateOutOfRange')">
+              Votre âge doit être compris entre 14 et 89 ans.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 text-center fw-bolder mt-2">
+        <label for="sexe" class="form-label">Sexe</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text"
+            ><i class="bi bi-gender-neuter"></i
+          ></span>
+          <select
+            class="form-select is-invalid"
+            formControlName="gender"
+            [ngClass]="{
+          'is-invalid': isInvalid('gender'),
+        }"
+          >
+            <option value selected disabled hidden>
+              Selectionnez votre sexe
+            </option>
+            <option value="M">Masculin</option>
+            <option value="F">Feminin</option>
+          </select>
+          <div class="invalid-feedback">
+            <span *ngIf="isFieldInvalid('gender', 'required')">
+              Veuillez sélectionner votre sexe.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

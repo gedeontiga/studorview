@@ -1,0 +1,12 @@
+
+.step-fields-container select {
+    padding: .5rem .5rem;
+    background-color: hsla(240, 100%, 18%, 0.441);
+    border-color: #ff9100;
+    color: white;
+}
+
+.step-fields-container select option {
+    background-color: hsla(240, 100%, 18%, 0.852);
+    color: white;
+}

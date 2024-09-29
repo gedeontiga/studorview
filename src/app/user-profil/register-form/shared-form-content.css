@@ -1,0 +1,76 @@
+
+.step-fields-container {
+    height: 60vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-bottom: 2px solid #ff9100;
+    box-shadow: 0 4px 8px #ff9100;
+    width: 100%;
+
+    @media (max-width: 700px) {
+        height: 70vh;
+    }
+}
+
+.register-form-content {
+    width: 100%;
+    height: 70vh;
+    @media (max-width: 700px) {
+        height: 80vh;
+    }
+}
+
+.register-header {
+    height: 10vh;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    align-content: center;
+    border-left: 2px solid #00005a;
+    border-top: 2px solid #00005a;
+    border-right: 2px solid #00005a;
+    border-bottom: 2px solid #ff9100;
+    color: #00005a;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.input-group-text {
+    background-color: #00005a;
+    border: 1px solid #ff9100;
+}
+
+.bi {
+    color: #ff9100;
+}
+
+.step-fields-container input {
+    padding: .5rem .5rem;
+    background-color: hsla(240, 100%, 18%, 0.441);
+    border-color: #ff9100;
+    color: white;
+}
+
+.step-fields-container label {
+    font-size: 1rem;
+    color: #ff9100;
+    font-weight: bolder;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: aliceblue;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00005a;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff9100;
+}

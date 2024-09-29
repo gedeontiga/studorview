@@ -1,0 +1,49 @@
+<div
+  class="register-body d-flex flex-row justify-content-center align-items-center"
+>
+  <div
+    class="register-form-container d-flex flex-column justify-content-center align-items-center"
+  >
+    <form
+      [@slideAnimation]="currentStep"
+      class="register-form"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+      novalidate
+    >
+      <div
+        *ngIf="currentStep === 1"
+        class="flex-grow-1 w-100 justify-content-center align-items-center"
+      >
+        <app-personal-info
+          [personalInfoForm]="personalInfoForm"
+          [hobbies]="hobbies"
+        >
+        </app-personal-info>
+        <div
+          class="btn-step-container align-items-center justify-content-center"
+        >
+          <button type="button" class="btn btn-step" (click)="nextStep()">
+            Suivant
+          </button>
+        </div>
+      </div>
+
+      <div
+        *ngIf="currentStep === 2"
+        class="flex-grow-1 w-100 justify-content-center align-items-center"
+      >
+        <app-account-info [accountInfoForm]="accountInfoForm">
+        </app-account-info>
+        <div
+          class="btn-step-container align-items-center justify-content-between"
+        >
+          <button type="button" class="btn btn-step" (click)="prevStep()">
+            Précédent
+          </button>
+          <button type="submit" class="btn btn-submit">Valider</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

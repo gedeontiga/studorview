@@ -1,0 +1,38 @@
+
+.input-group-text {
+    color: #ff9100;
+}
+
+.input-text-email {
+    @media (max-width: 466px) {
+        width: 50%;
+    }
+}
+
+.input-group-email {
+    color: #ff9100;
+    background-color: #00005a;
+    width: 30%;
+
+    @media (max-width: 768px) {
+        width: auto;
+    }
+}
+
+.hide-show-password-btn {
+    background-color: aliceblue;
+    border: none;
+}
+
+.hide-show-password-btn .bi {
+    color: #00005a;
+}
+
+.hide-show-password-btn:hover {
+    background-color: #00005a;
+    border: none;
+}
+
+.hide-show-password-btn:hover .bi {
+    color: aliceblue;
+}

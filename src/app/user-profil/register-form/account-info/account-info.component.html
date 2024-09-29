@@ -1,0 +1,193 @@
+<div
+  [formGroup]="accountInfoForm"
+  class="register-form-content justify-content-center"
+>
+  <div class="register-header text-center mt-1">
+    <h3 class="fs-3">Étape 2 : Informations de connexion</h3>
+  </div>
+  <div
+    class="step-fields-container justify-content-center align-content-center"
+  >
+    <div class="row p-1 mt-4">
+      <div class="form-group col-md-12">
+        <div class="input-group has-validation">
+          <span class="input-group-text rounded-end-0">&#64;</span>
+          <div class="outline-label input-text">
+            <input
+              type="text"
+              class="form-control rounded-end-2"
+              placeholder=""
+              formControlName="username"
+              [ngClass]="{
+                'is-invalid': isInvalid('username'),
+                'is-valid': isValid('username')
+              }"
+            />
+            <label for="pseudo" class="form-label">Pseudo</label>
+          </div>
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="isFieldTouchedAndInvalid('username', 'required')"
+        >
+          Veuillez entrer votre pseudo.
+        </div>
+      </div>
+    </div>
+    <div class="row p-1 mt-4">
+      <div class="form-group col-md-12">
+        <div class="input-group has-validation">
+          <span class="input-group-text rounded-end-0"
+            ><i class="bi bi-envelope-at-fill"></i
+          ></span>
+          <div class="outline-label input-text-email">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="email"
+              [ngClass]="{
+              'is-invalid': isInvalid('email'),
+              'is-valid': isValid('email'),
+            }"
+              autocomplete="username"
+            />
+            <label for="email" class="form-label">Email</label>
+          </div>
+          <span
+            id="email-end"
+            class="input-group-email rounded-start-0 input-group-text"
+            >&#64;studor.com</span
+          >
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="isFieldTouchedAndInvalid('email', 'required')"
+        >
+          Veuillez entrer la base de votre email.
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="isFieldInvalid('email', 'pattern')"
+        >
+          La base de l'email ne peut contenir d'expression regulière.
+        </div>
+        <div
+          class="text-center text-danger"
+          *ngIf="isFieldInvalid('email', 'emailAlreadyExists')"
+        >
+          L'email existe deja.
+        </div>
+      </div>
+    </div>
+    <div class="mb-5mt-2" formGroupName="passwordGroup">
+      <div class="row p-1 mt-2">
+        <div class="form-group col-md-12 d-flex flex-column align-items-center">
+          <div class="input-group has-validation">
+            <span class="input-group-text rounded-end-0"
+              ><i class="bi bi-lock-fill"></i
+            ></span>
+            <div class="outline-label input-password">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder=""
+                class="form-control"
+                formControlName="password"
+                [ngClass]="{
+                'is-invalid': isValidGroup('passwordGroup') ||
+                            (isFieldTouched('passwordGroup.password') && isInvalid('passwordGroup.password')),
+                'is-valid': isValid('passwordGroup.password'),
+              }"
+                (input)="onPasswordInput()"
+                autocomplete="new-password"
+              />
+              <label for="motDePasse" class="form-label">Mot de passe</label>
+            </div>
+            <button
+              class="btn hide-show-password-btn"
+              type="button"
+              (click)="togglePasswordVisibility()"
+            >
+              <i
+                class="bi"
+                [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+              ></i>
+            </button>
+          </div>
+          <div class="progress mt-3 mb-2" style="height: 5px; width: 90%">
+            <div
+              class="progress-bar {{ passwordColor }}"
+              role="progressbar"
+              [style]="'height: 5px; width: ' + passwordStrength + '%;'"
+              attr.aria-valuenow="{{ passwordStrength }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+          <div
+            class="text-center text-danger"
+            *ngIf="
+              isFieldTouched('passwordGroup.password') &&
+              !isValid('passwordGroup.password')
+            "
+          >
+            Le mot de passe doit contenir au moins 8 caractères.
+          </div>
+        </div>
+      </div>
+      <div class="row p-1 mt-2">
+        <div class="form-group col-md-12">
+          <div class="input-group has-validation">
+            <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+            <div class="outline-label input-password">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder=""
+                class="form-control is-invalid"
+                formControlName="confirmPassword"
+                [ngClass]="{
+                'is-invalid': isValidGroup('passwordGroup') ||
+                            isInvalid('passwordGroup.confirmPassword'),
+                'is-valid': isValid('passwordGroup.confirmPassword'),
+              }"
+                autocomplete="new-password"
+              />
+              <label for="confirmerMotDePasse" class="form-label"
+                >Confirmer le mot de passe</label
+              >
+            </div>
+            <button
+              class="btn hide-show-password-btn"
+              type="button"
+              (click)="togglePasswordVisibility()"
+            >
+              <i
+                class="bi"
+                [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+              ></i>
+            </button>
+          </div>
+          <div
+            class="text-center text-danger"
+            *ngIf="
+              isFieldTouchedAndInvalid(
+                'passwordGroup.confirmPassword',
+                'required'
+              )
+            "
+          >
+            Veuillez confirmer de votre mot de passe.
+          </div>
+          <div
+            class="text-center text-danger"
+            *ngIf="
+              isFieldTouchedAndInvalid('passwordGroup', 'passwordMismatch')
+            "
+          >
+            Les mot de passe ne correspondent pas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
